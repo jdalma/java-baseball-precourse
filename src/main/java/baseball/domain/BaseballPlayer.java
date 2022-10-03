@@ -4,7 +4,9 @@ import baseball.util.Converter;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static baseball.service.BaseballReferee.END_INCLUSIVE;
 import static baseball.service.BaseballReferee.NUMBER_SIZE;
@@ -19,11 +21,11 @@ public class BaseballPlayer {
     }
 
     public static BaseballPlayer computer() {
-        List<Integer> numbers = new ArrayList<>();
-        for (int i = 0; i < NUMBER_SIZE; i++) {
+        Set<Integer> numbers = new HashSet<>();
+        while (numbers.size() < NUMBER_SIZE) {
             numbers.add(Randoms.pickNumberInRange(START_INCLUSIVE, END_INCLUSIVE));
         }
-        return new BaseballPlayer(numbers);
+        return new BaseballPlayer(new ArrayList<>(numbers));
     }
 
     public static BaseballPlayer user(String command) {
