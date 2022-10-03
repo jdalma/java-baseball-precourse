@@ -17,11 +17,52 @@ public class BaseballPlayer {
     }
 
     public static BaseballPlayer computer() {
-        return new BaseballPlayer(Randoms.pickUniqueNumbersInRange(START_INCLUSIVE , END_INCLUSIVE , NUMBER_SIZE));
+        return new BaseballPlayer(Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, NUMBER_SIZE));
     }
 
     public static BaseballPlayer user(String command) {
         return new BaseballPlayer(Converter.stringToList(command));
+    }
+
+    public BaseballResult compare(BaseballPlayer player2) {
+        List<Integer> otherNumbers = player2.getNumbers();
+        int strikeCount = 0;
+        int ballCount = 0;
+
+        for (int i = 0; i < this.numbers.size() ; i++){
+            boolean isContains = this.numbers.contains(otherNumbers.get(i));
+            boolean isEquals = this.numbers.get(i).equals(otherNumbers.get(i));
+            strikeCount = isEqualsAddCount(strikeCount, isEquals);
+            ballCount = isContainsAndNotEqualsAddCount(ballCount, isContains, isEquals);
+        }
+        return new BaseballResult(getHint(strikeCount, ballCount), strikeCount == NUMBER_SIZE);
+    }
+
+    private String getHint(int strike, int ball) {
+        if (strike == 0 && ball == 0) {
+            return "낫싱";
+        }
+        else if (strike == 0) {
+            return String.format("%d볼", ball);
+        }
+        else if (ball == 0) {
+            return String.format("%d스트라이크", strike);
+        }
+        return String.format("%d볼 %d스트라이크", ball, strike);
+    }
+
+    private int isEqualsAddCount(int count, boolean isEquals) {
+        if (isEquals) {
+           return count + 1;
+        }
+        return count;
+    }
+
+    private int isContainsAndNotEqualsAddCount(int count, boolean isContains, boolean isEquals) {
+        if (isContains && !isEquals) {
+           return count + 1;
+        }
+        return count;
     }
 
     public List<Integer> getNumbers() {
