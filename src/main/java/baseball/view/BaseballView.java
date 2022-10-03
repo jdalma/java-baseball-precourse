@@ -8,13 +8,13 @@ public class BaseballView implements GameView {
 
     @Override
     public void enter() {
-        System.out.print(START_MESSAGE);
+        this.print(START_MESSAGE);
     }
 
     @Override
     public void continueGame() {
-        System.out.println(GAME_OVER);
-        System.out.println(CONTINUE_GAME);
+        this.println(GAME_OVER);
+        this.println(CONTINUE_GAME);
     }
 
     @Override
