@@ -2,6 +2,8 @@ package baseball.domain;
 
 import baseball.util.Converter;
 import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import static baseball.service.BaseballReferee.END_INCLUSIVE;
@@ -17,7 +19,11 @@ public class BaseballPlayer {
     }
 
     public static BaseballPlayer computer() {
-        return new BaseballPlayer(Randoms.pickUniqueNumbersInRange(START_INCLUSIVE, END_INCLUSIVE, NUMBER_SIZE));
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = 0; i < NUMBER_SIZE; i++) {
+            numbers.add(Randoms.pickNumberInRange(START_INCLUSIVE, END_INCLUSIVE));
+        }
+        return new BaseballPlayer(numbers);
     }
 
     public static BaseballPlayer user(String command) {
