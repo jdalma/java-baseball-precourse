@@ -1,10 +1,5 @@
 package baseball.service;
 
-import baseball.error.BaseballNumberContainsNonDigitException;
-import baseball.error.BaseballNumberDuplicateException;
-import baseball.error.BaseballNumberNullException;
-import baseball.error.BaseballNumberSizeException;
-
 public class BaseballReferee implements Referee{
 
     public static final int START_INCLUSIVE = 0;
@@ -14,13 +9,13 @@ public class BaseballReferee implements Referee{
     @Override
     public void checkCommand(String command) {
         if (command == null) {
-            throw new BaseballNumberNullException("숫자를 입력하여 주세요.");
+            throw new IllegalArgumentException("숫자를 입력하여 주세요.");
         } else if (isDifferentSize(command)) {
-            throw new BaseballNumberSizeException(String.format("숫자는 %d 자리만 입력하여 주세요.", NUMBER_SIZE));
+            throw new IllegalArgumentException(String.format("숫자는 %d 자리만 입력하여 주세요.", NUMBER_SIZE));
         } else if (isCommandContainsNonDigit(command)) {
-            throw new BaseballNumberContainsNonDigitException("숫자만 입력하여 주세요.");
+            throw new IllegalArgumentException("숫자만 입력하여 주세요.");
         } else if (isNumberDuplicate(command)) {
-            throw new BaseballNumberDuplicateException("숫자가 중복되지 않게 입력하여 주세요.");
+            throw new IllegalArgumentException("숫자가 중복되지 않게 입력하여 주세요.");
         }
     }
 

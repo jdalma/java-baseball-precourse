@@ -1,9 +1,5 @@
 package baseball.service;
 
-import baseball.error.BaseballNumberContainsNonDigitException;
-import baseball.error.BaseballNumberDuplicateException;
-import baseball.error.BaseballNumberNullException;
-import baseball.error.BaseballNumberSizeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -24,10 +20,10 @@ class BaseballRefereeTest {
         class Context_CommandIsNull{
 
             @Test
-            @DisplayName("BaseballNumberNullException 예외를 던진다.")
+            @DisplayName("IllegalArgumentException 예외를 던진다.")
             void It_ThrowsNullException(){
                 assertThatThrownBy(() -> baseballReferee.checkCommand(null))
-                        .isInstanceOf(BaseballNumberNullException.class);
+                        .isInstanceOf(IllegalArgumentException.class);
             }
         }
 
@@ -38,10 +34,10 @@ class BaseballRefereeTest {
             private final String COMMAND = "1234";
 
             @Test
-            @DisplayName("BaseballNumberSizeException 예외를 던진다.")
+            @DisplayName("IllegalArgumentException 예외를 던진다.")
             void It_ThrowSizeException(){
                 assertThatThrownBy(() -> baseballReferee.checkCommand(COMMAND))
-                        .isInstanceOf(BaseballNumberSizeException.class);
+                        .isInstanceOf(IllegalArgumentException.class);
             }
         }
 
@@ -52,10 +48,10 @@ class BaseballRefereeTest {
             private final String COMMAND = "1A2";
 
             @Test
-            @DisplayName("BaseballNumberContainsNonDigitException 예외를 던진다.")
+            @DisplayName("IllegalArgumentException 예외를 던진다.")
             void It_ThrowNonDigitException(){
                 assertThatThrownBy(() -> baseballReferee.checkCommand(COMMAND))
-                        .isInstanceOf(BaseballNumberContainsNonDigitException.class);
+                        .isInstanceOf(IllegalArgumentException.class);
             }
         }
 
@@ -66,10 +62,10 @@ class BaseballRefereeTest {
             private final String COMMAND = "227";
 
             @Test
-            @DisplayName("BaseballNumberDuplicateException 예외를 던진다.")
+            @DisplayName("IllegalArgumentException 예외를 던진다.")
             void It_ThrowDuplicateException(){
                 assertThatThrownBy(() -> baseballReferee.checkCommand(COMMAND))
-                        .isInstanceOf(BaseballNumberDuplicateException.class);
+                        .isInstanceOf(IllegalArgumentException.class);
             }
         }
     }
