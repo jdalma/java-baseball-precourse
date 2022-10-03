@@ -1,6 +1,9 @@
 package baseball.service;
 
-public class BaseballReferee implements Referee{
+import baseball.domain.BaseballPlayer;
+import baseball.domain.BaseballResult;
+
+public class BaseballReferee implements Referee<BaseballPlayer, BaseballResult> {
 
     public static final int START_INCLUSIVE = 0;
     public static final int END_INCLUSIVE = 9;
@@ -17,6 +20,11 @@ public class BaseballReferee implements Referee{
         } else if (isNumberDuplicate(command)) {
             throw new IllegalArgumentException("숫자가 중복되지 않게 입력하여 주세요.");
         }
+    }
+
+    @Override
+    public BaseballResult compareNumber(BaseballPlayer player1, BaseballPlayer player2) {
+        return player1.compare(player2);
     }
 
     private boolean isDifferentSize(String command) {
