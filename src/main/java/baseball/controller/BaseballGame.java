@@ -17,7 +17,7 @@ public class BaseballGame implements GameController {
     }
 
     @Override
-    public void start(){
+    public void start() {
         do {
             gameInit();
         } while (continueGame());
@@ -26,10 +26,12 @@ public class BaseballGame implements GameController {
     private void gameInit() {
         BaseballPlayer computer = BaseballPlayer.computer();
         BaseballResult result;
+
         do {
             result = play(computer);
             baseballView.println(result.getResultScore());
         } while (!result.isGameOver());
+
         baseballView.continueGame();
     }
 
@@ -38,6 +40,7 @@ public class BaseballGame implements GameController {
         String command = Console.readLine();
         checkCommand(command);
         BaseballPlayer user = BaseballPlayer.user(command);
+
         return compareNumber(computer, user);
     }
 

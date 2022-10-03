@@ -9,7 +9,7 @@ public class Converter {
         List<Integer> result = new ArrayList<>();
         char[] chars = string.toCharArray();
 
-        for(char ch : chars){
+        for (char ch : chars) {
             result.add(ch - 48);
         }
 

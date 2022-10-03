@@ -40,7 +40,7 @@ public class BaseballReferee implements Referee<BaseballPlayer, BaseballResult> 
         int[] numbers = new int[10];
         int count = 0;
 
-        for(int i = 0; i < command.length(); i++){
+        for (int i = 0; i < command.length(); i++) {
             char ch = command.charAt(i);
             numbers[ch - 48]++;
             count = Math.max(numbers[ch - 48] , count);

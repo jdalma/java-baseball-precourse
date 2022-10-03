@@ -35,7 +35,7 @@ public class BaseballPlayer {
         int strikeCount = 0;
         int ballCount = 0;
 
-        for (int i = 0; i < this.numbers.size() ; i++){
+        for (int i = 0; i < this.numbers.size() ; i++) {
             boolean isContains = this.numbers.contains(otherNumbers.get(i));
             boolean isEquals = this.numbers.get(i).equals(otherNumbers.get(i));
             strikeCount = isEqualsAddCount(strikeCount, isEquals);
